@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 
@@ -15,9 +16,11 @@ type Data struct {
 
 func main() {
 	participants := make(map[int64]map[string]int64)
-	checkpoints := []string{"KT1"}
+	checkpoints := []string{"KT1", "KT2", "KT3", "KT4", "REV1", "KT5", "REV2", "KT6"}
 
 	r := gin.Default()
+
+	r.Static("/static", "./static")
 
 	r.POST("/api/participant", func(c *gin.Context) {
 		var data Data
@@ -32,7 +35,7 @@ func main() {
 
 		participants[data.ID][data.Checkpoint] = data.Timestamp
 
-		c.JSON(200, gin.H{"message": "Data added to the nested map."})
+		c.JSON(200, gin.H{"message": fmt.Sprintf("Takmicar %d uspesno prijavljen!", data.ID)})
 	})
 
 	r.GET("/api/participant/:id", func(c *gin.Context) {
