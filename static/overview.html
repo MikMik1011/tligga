@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>treking liga</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="overview.js"></script>
+  </head>
+  <body>
+    <h1>tls majdanpek esistem</h1>
+    <h3><a href="/static/"> Prijava dolaska takmičara </a></h3>
+    <select
+      id="checkpointSelect"
+      name="checkpointSelect"
+      onload="checkCheckpoint()"
+      onchange="checkCheckpoint()"
+    ></select>
+    <br /><br />
+    <h4>
+      NAPOMENA: na pojedinim kontrolnim tačkama pokrivenost internetom je loša
+      ili nikakva. <br />Neke elektronske informacije mogu kasniti ili biti
+      nedosupne.
+    </h4>
+    <h3 id="lastUpdated"></h3>
+    <h2 id="message"></h2>
+    <table id="tabela" border="2">
+      <thead id="thead" class="thead-dark">
+        <tr>
+          <th scope="col">ID takmičara</th>
+          <th scope="col">Vreme</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </body>
+</html>

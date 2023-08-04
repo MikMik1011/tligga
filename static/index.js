@@ -27,7 +27,7 @@ $(document).ready(async () => {
     } finally {
       $("#submitParticipant").trigger("reset");
       $("#message").html(message);
-    
+
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         $("#message").html("");

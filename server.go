@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"sort"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -38,7 +39,7 @@ func main() {
 		c.JSON(200, gin.H{"message": fmt.Sprintf("Takmicar %d uspesno prijavljen!", data.ID)})
 	})
 
-	r.GET("/api/participant/:id", func(c *gin.Context) {
+	r.GET("/api/participants/:id", func(c *gin.Context) {
 		participantID, err := strconv.ParseInt(c.Param("id"), 10, 64)
 		if err != nil {
 			c.JSON(400, gin.H{"error": "Invalid participant ID"})
@@ -56,7 +57,7 @@ func main() {
 		c.JSON(200, checkpoints)
 	})
 
-	r.GET("/api/checkpoint/:id", func(c *gin.Context) {
+	r.GET("/api/checkpoints/:id", func(c *gin.Context) {
 		checkpointID := c.Param("id")
 
 		var data []Data
@@ -65,6 +66,10 @@ func main() {
 				data = append(data, Data{participantID, checkpointID, timestamp})
 			}
 		}
+
+		sort.Slice(data, func(i, j int) bool {
+			return data[i].Timestamp < data[j].Timestamp
+		})
 
 		c.JSON(200, data)
 	})
