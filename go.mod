@@ -2,7 +2,10 @@ module mikmik/tligga
 
 go 1.20
 
-require github.com/gin-gonic/gin v1.9.1
+require (
+	github.com/bensch777/discord-webhook-golang v0.0.5
+	github.com/gin-gonic/gin v1.9.1
+)
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect

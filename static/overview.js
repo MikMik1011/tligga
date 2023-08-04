@@ -17,7 +17,7 @@ const checkCheckpoint = async () => {
   let tableContent = response.map((participant) => {
     return `<tr>
       <td>${participant.id}</td>
-      <td>${new Date(participant.timestamp).toLocaleString()}</td>
+      <td>${new Date(participant.timestamp).toLocaleTimeString()}</td>
     </tr>`;
   });
   $("#tableBody").html(tableContent);
