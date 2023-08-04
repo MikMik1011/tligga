@@ -38,7 +38,17 @@ func sendEmbed(link string, embeds discordwebhook.Embed) error {
 func main() {
 	participants := make(map[int64]map[string]int64)
 	checkpoints := []string{"KT1", "KT2", "KT3", "KT4", "REV1", "KT5", "REV2", "KT6", "test"}
-	var webhookURL = "https://discord.com/api/webhooks/1137042171351007282/gl3MnpHcrm_rN50Y_C-1PyS1BjS7hLkyRb85nN0tgbqPD20TlZxkYAIURgtc87AYJBfj"
+	webhooks := map[string]string{
+		"KT1":  "https://discord.com/api/webhooks/1137112562387914782/69IsRz97bYWf9KMvhFu22WT2qElY4JAITRpAaMcrQcSLP6Efwok3CoCj2IQC7U4ljxJM",
+		"KT2":  "https://discord.com/api/webhooks/1137112655111401602/Z6P9YyuTXWhw96POQZMPYPm0NGZURaxqltzIZezN49u3RgCdY_h_KccteFUin2Y4o-RE",
+		"KT3":  "https://discord.com/api/webhooks/1137112880676876358/MMsEK3n0Xbjqlo2ettdlp3l_oGk_rNat04DfnakbGeEEUPkVFgYIviGCcWtbzqAQ64tA",
+		"KT4":  "https://discord.com/api/webhooks/1137112959009706164/-vitPbUz3RVuZSEjw_C2L692AVfkhk5zWkUv2wWfdoaI6FVliQStOu6mpncoD4-gHwEI",
+		"REV1": "https://discord.com/api/webhooks/1137113169370820790/HeFkASbY81nwxwL30mI83paGFPcBxjxeoimVyM1dV-BxYhZGkUdjDAAUj2jfa9z-6K4L",
+		"KT5":  "https://discord.com/api/webhooks/1137113021467086889/DlCNNcgjgZ8Kq_zJ6MFQBdSVEC-YNbmbqn2pzUaAuNW8zfRgkjap8i-dzivBzkfb0bJO",
+		"REV2": "https://discord.com/api/webhooks/1137113246227234976/jdNyTExNtpTG0-nvdv2DsdJo219F89TiGc33mes8PJkfAH1MHAj43168iiiRtVUYXJ7N",
+		"KT6":  "https://discord.com/api/webhooks/1137113096465432586/gbrhq-d_ksiPbMiDtqa0kmCRS-NUkiWZ9DELxYqkoDsKWzjVGsCRlc3hZZ04ksl4fJQ8",
+		"test": "https://discord.com/api/webhooks/1137113303966027796/ukbK3rRf0jDL8R7o0QSQnXpEhp0CcfAokG1eWLjtBe4ZdLSa-3lQ793UY7yJfShWtWqZ",
+	}
 
 	r := gin.Default()
 
@@ -59,12 +69,12 @@ func main() {
 
 		embed := discordwebhook.Embed{
 			Fields: []discordwebhook.Field{
-				discordwebhook.Field{
+				{
 					Name:   "ID",
 					Value:  strconv.FormatInt(data.ID, 10),
 					Inline: true,
 				},
-				discordwebhook.Field{
+				{
 					Name:   "Kontrolna tačka",
 					Value:  data.Checkpoint,
 					Inline: true,
@@ -73,7 +83,7 @@ func main() {
 			Timestamp: time.Unix(data.Timestamp/1000, 0),
 		}
 
-		sendEmbed(webhookURL, embed)
+		sendEmbed(webhooks[data.Checkpoint], embed)
 
 		c.JSON(200, gin.H{"message": fmt.Sprintf("Takmicar %d uspesno prijavljen!", data.ID)})
 	})

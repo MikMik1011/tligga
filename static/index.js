@@ -11,8 +11,10 @@ $(document).ready(async () => {
     event.preventDefault();
 
     try {
+      if($("#participantID").val() == "") return;
+      
       let data = {
-        id: Number($("#checkpointId").val()),
+        id: Number($("#participantID").val()),
         checkpoint: $("#checkpointSelect").val(),
         timestamp: Date.now(),
       };

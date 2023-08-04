@@ -10,19 +10,21 @@
   </head>
   <body>
     <h1>tls majdanpek esistem</h1>
-    <h3><a href="/static/overview.html"> Pregled kontrolnih tacki </a></h3>
+    <h3><a href="/static/overview.html"> Klikni ovde za pregled kontrolnih tacki </a></h3>
+    <label for="checkpointSelect">Kontrolna tačka:</label>
     <select id="checkpointSelect" name="checkpointSelect"></select>
     <br /><br />
     <form id="submitParticipant">
+      <label for="participantId">Takmičarski broj:</label>
       <input
         inputmode="numeric"
         type="number"
-        id="checkpointId"
-        name="checkpointId"
+        id="participantID"
+        name="participantID"
         placeholder="123"
       />
       <br /><br />
-      <input type="submit" id="submit" value="Submit" />
+      <input type="submit" id="submit" value="Prijavi takmičara" />
     </form>
     <br /><br />
     <h4>
